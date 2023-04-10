@@ -1,0 +1,27 @@
+.heading {
+    position: relative;
+    /* margin-top: 10px; */
+    /* margin-bottom: 10px; */
+    text-align: center;
+    max-height: max-content;
+    padding: 10px;;
+    background-color: rgb(255, 255, 255);
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  /* box-shadow: 1px 3px 20px 3px  #2c2929; */
+  }
+  /* .navbar{
+    background-color: rgb(60, 60, 60);
+    position: relative;
+    margin-bottom: 20px; 
+    padding: 15px;
+    
+  } */
+  .question{
+    position: absolute;
+    width:60%;
+    height: auto;
+    padding-top: 20px;
+    padding-left: 30px;
+    padding-bottom: 50px;
+    background-color: rgb(149, 149, 153);
+  }

@@ -1,0 +1,45 @@
+<div class="err">
+
+</div>
+<div class="form1">
+  <form #submit="ngForm"> 
+    <label>Create a Question:</label><sup>*</sup><br><br>
+    <textarea placeholder="Type the Question here." name="question" [(ngModel)]="question" #question1="ngModel"
+      required></textarea>
+    <div *ngIf="question1.errors?.['required']">
+      <label class="alert">*Question is Required</label>
+    </div>
+    <br><br>
+    <label>Option 1</label>
+    <input type="text" name="option1" class="input" [(ngModel)]="option_a" #option1="ngModel" required><sup>*</sup>
+    
+      <label>Valid Hours</label> 
+      <input type="number" name="hours" class="input" [(ngModel)]="validhours" #hours="ngModel" required>
+        <span *ngIf="hours.errors?.['required']&&hours.touched">
+        <label class="alert">*hours is Required</label>
+        </span>
+      <br>
+      <span *ngIf="option1.errors?.['required']&&option1.touched">
+      <label class="alert">*option1 is Required</label>
+    </span>
+    <br><br>
+    <label>Option 2</label>
+    <input type="text" name="option2" class="input" [(ngModel)]="option_b" #option2="ngModel" required><sup>*</sup>
+    <br><span *ngIf="option2.errors?.['required']&&option2.touched">
+      <label class="alert"> *option2 is Required</label>
+    </span><br><br>
+
+    <div>
+      <div *ngFor="let input of inputs; let i=index;">
+        <label>Option{{i+3}}</label>
+        <input type="text" name="input" [(ngModel)]="input.value" class="input" [id]="'input'+1"><br><br>
+      </div><br>
+      <button (click)="addInput()" class="button">Add</button>
+      <button (click)="removeInput()" class="button">Remove</button>
+
+    </div>
+    <button type="submit" (click)="onSubmit(submit)" class="button" title="Fill the Required Fields" 
+    [disabled]="question1.errors?.['required']||option1.errors?.['required']||option2.errors?.['required']||hours.errors?.['required']"
+    >Submit</button>
+  </form>
+</div>
