@@ -13,7 +13,7 @@ export class HomeComponent {
   optionletter: any = ['a', 'b', 'c', 'd'];
   answers: any = {};
   questions: any = [];
-  submitted: any = sessionStorage.getItem();
+  submitted: any = false;
   public constructor(private appService: AppService,
     private router: Router,
     private http: HttpClient) { }

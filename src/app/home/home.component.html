@@ -7,8 +7,10 @@
     <br>
     <a (click)="createQuestion()"><button mat-raised-button>Create Question</button></a>
     <br><br>
-
-    <div class="question">
+   <div class="question" *ngIf="submitted!=false">
+    <h2>Response Submitted Successfully</h2>
+   </div>
+    <div class="question" *ngIf="submitted==false">
         <h2>Today Quiz</h2>
         <label><b>Questions:</b></label>
         <form #submit="ngForm" (ngSubmit)="onSubmit(submit)" >
