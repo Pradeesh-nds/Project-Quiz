@@ -68,9 +68,8 @@ app.post('/api/dailyquiz', (req, res) => {
     left join Options o2 on q.Question_ID=o2.Question_ID and o2.Order_No=2\
     left join Options o3 on q.Question_ID=o3.Question_ID and o3.Order_No=3\
     left join Options o4 on q.Question_ID=o4.Question_ID and o4.Order_No=4\
- \
-    ORDER BY q.Question_ID";
-    //  where q.Created_Time>=DATEADD(hour,-q.valid_time,GETDATE())\
+ where q.Created_Time>=DATEADD(hour,-q.valid_time,GETDATE())\
+    ORDER BY q.Question_ID"; 
     sql.query(connection, query, (err, rows) => {
 
       if (err) {
