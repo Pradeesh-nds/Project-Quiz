@@ -19,7 +19,7 @@
                     <ng-container *ngIf="option">
                     <label>{{optionletter[j]}}.)</label>
                     <input type="radio" name="{{question['Question_ID']}}" 
-                              value="{{question['option'+(j+1)]}}"
+                              value="{{question['optionid'+(j+1)]}}"
                 [(ngModel)]="answers[question['Question_ID']]" #options="ngModel" required>
 
                     <label>{{question['option'+(j+1)]}}</label><br>
