@@ -4,6 +4,15 @@ const jwt = require('jsonwebtoken')
 const sql = require('msnodesqlv8')
 const cors = require('cors')
 
+//Domain Authentication
+const ActiveDirectory = require('activedirectory')
+const config = {
+  url: 'ldap://nds.com',
+  baseDN: 'dc=nds,dc=com',
+};
+const ad = new ActiveDirectory(config)
+
+
 
 const date = require('date-and-time');
 var bodyParser = require('body-parser');
@@ -108,7 +117,7 @@ app.post('/api/submitanswers', (req, res) => {
   else {
     var answer = req.body.answers;
 
-  
+
     for (let i = 1; i < answer.length; i++) {
       const query = "insert into answers(Username,Question_ID,Option_Id,submited) values(?,?,?,?)";
       const values = [answer[0].submitedby, answer[i]['Question_Id'], answer[i]['Answer'], ctime]
@@ -186,32 +195,21 @@ app.post('/api/createquestion', (req, res) => {
 app.post('/api/login', (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   const { username, password } = req.body;
+  ad.authenticate(username, password, function (err, auth) {
+    if (err) {
+      res.status(200).send({ 'error message': 'Invalid Credentials' });
 
-
-  const query = "select*from UserLoginDetails  where Username='" + username + "'";
-  sql.query(connection, query, (err, result) => {
-
-    if (result.length > 0) {
-      if (result[0].Password == password) {
-
-        const key = { username: result[0].Userid, role: result[0].Roles }
-        const token = jwt.sign(key, "secretkey");
-
-        res.status(200).send({ token });
-      }
-      else {
-        res.status(200).send({ 'error message': 'Wrong Password' });
-
-      }
+    }
+    else if (!auth) {
+      res.status(200).send({ 'error message': 'Wrong Password' });
     }
     else {
+      const key = { username }
+      const token = jwt.sign(key, "secretkey");
 
-      res.status(200).send({ 'error message': 'Invalid Username' });
+      res.status(200).send({ token });
     }
-
-  })
-
-
+  });
 
 })
 
