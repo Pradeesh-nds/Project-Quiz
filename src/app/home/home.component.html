@@ -7,6 +7,7 @@
     <div class="question" *ngIf="submitted==false">
         <h1 class="title"><b>TODAY'S &nbsp;&nbsp;QUIZ</b></h1>
         <h2 class="title2"><b>Questions:</b></h2>
+        <a (click)="createQuestion()"><button mat-raised-button>Create Question</button></a>
         <form #submit="ngForm" (ngSubmit)="onSubmit(submit)" >
             <div *ngFor="let question of questions;let i=index">
                 <label class="question-label"><b>{{i+1}}.){{question.Question}}  </b></label>

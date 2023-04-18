@@ -204,7 +204,7 @@ app.post('/api/login', (req, res) => {
       res.status(200).send({ 'error message': 'Wrong Password' });
     }
     else {
-      const key = { username }
+      const key = { username: username, role: 'Admin' }
       const token = jwt.sign(key, "secretkey");
 
       res.status(200).send({ token });
