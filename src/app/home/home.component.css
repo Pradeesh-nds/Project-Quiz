@@ -20,6 +20,9 @@
     font-size: 20px;
     font-weight: 200px;
   }
+  #logout{
+    float: right;
+}
   .btn:hover{
     background-color:#ff2e2e
   }

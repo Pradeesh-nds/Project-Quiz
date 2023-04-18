@@ -1,0 +1,31 @@
+.heading {
+    position: relative;
+    /* margin-top: 10px; */
+    /* margin-bottom: 10px; */
+    text-align: center;
+    max-height: max-content;
+    padding: 10px;;
+    background-color: rgb(255, 255, 255);
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  /* box-shadow: 1px 3px 20px 3px  #2c2929; */
+  }
+  .navi{
+    padding-left: 30px   ;
+  }
+  #nav{
+    padding: 15px;
+   background-color: rgb(30, 29, 29);
+  }
+  .btn{
+    color:aliceblue;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    background-color: rgb(30, 29, 29);
+    font-size: 20px;
+    font-weight: 200px;
+  }
+  #logout{
+    float: right;
+}
+  .btn:hover{
+    background-color:#ff2e2e
+  }

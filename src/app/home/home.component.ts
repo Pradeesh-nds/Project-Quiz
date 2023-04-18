@@ -33,6 +33,12 @@ export class HomeComponent {
     }
 
   }
+  redirection(key:any){
+    if(key=="home"){
+      this.router.navigate(['/home']);
+    }
+
+  }
   onSubmit(submit: NgForm) {
     console.log(this.answers)
     const user = sessionStorage.getItem('user');

@@ -8,17 +8,38 @@ textarea{
     font-size: 20px;
     font-weight: 200;
 }
+.navi{
+    padding-left: 30px   ;
+  }
+  #nav{
+    padding: 15px;
+   background-color: rgb(30, 29, 29);
+   margin-bottom: 20px;
+  }
+  .btn{
+    color:aliceblue;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    background-color: rgb(30, 29, 29);
+    font-size: 20px;
+    font-weight: 200px;
+  }
+  .btn:hover{
+    background-color:#ff2e2e
+  }
 .form1{
     margin-left: 40px;
     margin-right: 40px;
     position: relative;
     width:auto;
     height: auto;
-    margin-top: 30px;
+    padding-top: 20px;
     
     padding-bottom: 50px;
     background-color: rgb(149, 149, 153);
-    border-radius: 20px;
+    border-radius: 20px; 
+}
+#logout{
+    float: right;
 }
 form{
     padding-left: 50px;
@@ -28,13 +49,7 @@ form{
     top:30px;
     left: 40x;
 }
-.form1{
-    position: absolute;
-   top:60px;
-   left: 40x;
-padding: 20px;
-padding-bottom: 20px;
-    }
+
     input::before{
         background-color:whitesmoke;
     }
