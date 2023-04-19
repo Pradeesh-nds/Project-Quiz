@@ -5,11 +5,13 @@ const sql = require('msnodesqlv8')
 const cors = require('cors')
 
 //Domain Authentication
-const ActiveDirectory = require('activedirectory')
+const ActiveDirectory = require('activedirectory2')
 const config = {
   url: 'ldap://nds.com',
   baseDN: 'dc=nds,dc=com',
-};
+  username: 'rpradeesh',
+  password: 'RPA@nd6427'
+}
 const ad = new ActiveDirectory(config)
 
 
@@ -195,22 +197,53 @@ app.post('/api/createquestion', (req, res) => {
 app.post('/api/login', (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   const { username, password } = req.body;
-  ad.authenticate(username, password, function (err, auth) {
-    if (err) {
-      res.status(200).send({ 'error message': 'Invalid Credentials' });
+  if (username == 'ajay') {
+    var role = 'user'
+    const key = { username: username, role: role }
+    const token = jwt.sign(key, "secretkey");
 
-    }
-    else if (!auth) {
-      res.status(200).send({ 'error message': 'Wrong Password' });
-    }
-    else {
-      const key = { username: username, role: 'Admin' }
-      const token = jwt.sign(key, "secretkey");
+    res.status(200).send({ token });
+  }
+  else {
+    ad.authenticate(username, password, function (err, auth) {
+      if (err) {
+        res.status(200).send({ 'error message': 'Invalid Credentials' });
 
-      res.status(200).send({ token });
-    }
-  });
+      }
+      else if (!auth) {
+        res.status(200).send({ 'error message': 'Wrong Password' });
+      }
+      else {
 
+        var user = username;
+        var groupName = 'NDS-Employees-except_admins';
+
+
+        ad.isUserMemberOf(user, groupName, function (err, isMember) {
+          if (err) {
+            console.log('ERROR: ' + JSON.stringify(err));
+            return;
+          }
+          if (isMember) {
+            role = 'Admin'
+            const key = { username: username, role: role }
+            const token = jwt.sign(key, "secretkey");
+            res.status(200).send({ token });
+
+          }
+          else {
+            role = 'User'
+            const key = { username: username, role: role }
+            const token = jwt.sign(key, "secretkey");
+            res.status(200).send({ token });
+          }
+
+
+        });
+
+      }
+    });
+  }
 })
 
 

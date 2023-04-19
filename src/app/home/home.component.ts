@@ -64,16 +64,7 @@ export class HomeComponent {
 
 
   }
-  createQuestion() {
-    this.appService.getAuthorization().subscribe((res: any) => {
-      if (res.Admin == false) {
-        alert("Only Admin Can Access");
-      }
-      else {
-        this.router.navigate(['/Question']);
-      }
-    });
-  }
+  
 
 
 
