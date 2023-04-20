@@ -197,14 +197,7 @@ app.post('/api/createquestion', (req, res) => {
 app.post('/api/login', (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   const { username, password } = req.body;
-  if (username == 'ajay') {
-    var role = 'user'
-    const key = { username: username, role: role }
-    const token = jwt.sign(key, "secretkey");
-
-    res.status(200).send({ token });
-  }
-  else {
+ 
     ad.authenticate(username, password, function (err, auth) {
       if (err) {
         res.status(200).send({ 'error message': 'Invalid Credentials' });
@@ -243,7 +236,7 @@ app.post('/api/login', (req, res) => {
 
       }
     });
-  }
+  
 })
 
 

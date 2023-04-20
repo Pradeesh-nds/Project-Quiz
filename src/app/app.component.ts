@@ -12,14 +12,47 @@ export class AppComponent {
   title = 'angular_login';
   public constructor(private router: Router,
     private appService:AppService){}
-  createQuestion() {
+    islogedin=false;
+    ngOnInit() {
+      
+      this.appService.getAuthorization().subscribe((res: any) => {
+        if (res.Authorization == false) {
+          this.router.navigate(['/'])
+        }
+       
+      });
+     
+    }
+    
+   home(){
     this.appService.getAuthorization().subscribe((res: any) => {
-      if (res.Admin == false) {
+      if (res.Authorization == false) {
+        this.router.navigate(['/'])
+      }
+      else{
+        this.router.navigate(['/home'])
+      }
+    });
+   }
+  
+  createQuestion() {
+    
+    this.appService.getAuthorization().subscribe((res: any) => {
+      if (res.Authorization == false) {
+        this.router.navigate(['/'])
+      }
+     else if (res.Admin == false) {
+       
         alert("Only Admin Can Access");
       }
       else {
         this.router.navigate(['/Question']);
       }
     });
+  }
+  logout(){
+    this.islogedin=false;
+    sessionStorage.clear();
+    this.router.navigate(['/'])
   }
 }

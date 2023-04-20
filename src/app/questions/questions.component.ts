@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { AppService } from '../app.service';
-import { Route, Router } from '@angular/router';
-import {HttpClient,HttpHeaders, HttpInterceptor,HttpHandler, HttpEvent, HttpRequest} from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
+import {HttpClient} from '@angular/common/http';
+
 import { FormsModule, NgForm } from '@angular/forms';
 
 

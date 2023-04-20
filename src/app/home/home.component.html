@@ -6,7 +6,7 @@
   
     <div class="question" *ngIf="submitted==false">
         <h1 class="title"><b>TODAY'S &nbsp;&nbsp;QUIZ</b></h1>
-        <h2 class="title2"><b>Questions:</b></h2>
+        <h2 class="title2"><b>Questions:</b><span class="datepipe">{{ date|date:"fullDate"}}</span></h2>
         
         <form #submit="ngForm" (ngSubmit)="onSubmit(submit)" >
             <div *ngFor="let question of questions;let i=index">

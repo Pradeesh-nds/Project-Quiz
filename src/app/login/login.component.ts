@@ -4,6 +4,7 @@ import { Route, Router } from '@angular/router';
 import { AppService } from '../app.service';
 
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -20,9 +21,10 @@ errormessage1:any=''
     private router:Router,
     private appService:AppService,
     private http :HttpClient,
+ 
     ){}
   ngOnInit(){
-
+    
     sessionStorage.clear();
   }
   onSubmit(){
@@ -35,7 +37,9 @@ errormessage1:any=''
     this.appService.storeToken(response.token,data);
    this.errormessage1=response['error message']
   if(response.token!=undefined){
+   
     this.router.navigate(['/home'])
+    
   }
   
     })

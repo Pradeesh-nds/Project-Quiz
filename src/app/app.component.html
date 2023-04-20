@@ -1,13 +1,15 @@
 <div class="heading">
-    <h1>Quiz</h1>
+    <h1>{{'Quiz'|uppercase}}</h1>
 </div>
-<br>
-<nav id="nav">
 
-<a routerLink="/home"  class="navi"><button class="btn">Home</button></a>
+<ng-container *ngIf="islogedin">
+<nav id="nav">
+<a   (click)="home()" class="navi"><button class="btn">Home</button></a>
 <a (click)="createQuestion()" class="navi"><button class="btn">Create Question</button></a>
 <a class="navi"><button class="btn">Contact</button></a>
-<a routerLink="/"  class="navi" id="logout"><button class="btn">Logout</button></a>
+<a  (click)="logout()" class="navi" id="logout"><button class="btn">Logout</button></a>
 </nav>
+</ng-container>
+
 <br><br>
 <router-outlet></router-outlet>

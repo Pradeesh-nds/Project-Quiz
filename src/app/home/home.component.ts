@@ -3,7 +3,7 @@ import { AppService } from '../app.service';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
-
+import { AppComponent } from '../app.component';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -14,15 +14,19 @@ export class HomeComponent {
   answers: any = {};
   questions: any = [];
   submitted: any = false;
+  date=new Date();
   public constructor(private appService: AppService,
     private router: Router,
-    private http: HttpClient) { }
+    private http: HttpClient,
+    private appComponent:AppComponent) { }
   ngOnInit() {
+    this.appComponent.islogedin=true;
     this.appService.getAuthorization().subscribe((res: any) => {
-      if (res.Authorization == false) {
-        this.router.navigate(['/'])
+      if(res.Authorization==false){
+       this.router.navigate(['/'])
       }
-    });
+    
+     });
     if (!sessionStorage.getItem('submitted')) {
       this.appService.dailyQuiz().subscribe((res: any) => {
         this.questions = res.rows;

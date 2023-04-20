@@ -3,3 +3,6 @@
 html, body { height: 100%;
  }
 body { margin: 0; font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;background-color: rgb(207, 34, 34); }
+title{
+    background-color: red;
+}
